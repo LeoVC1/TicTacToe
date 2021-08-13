@@ -19,8 +19,6 @@ public class HumanController : PlayerController
 
     public void MakeMove(int i, int j)
     {
-        Debug.Log(i + "/" + j);
-
         _board.board[i, j] = playerMark;
 
         _gameController.CurrentPlayer = Player.AI;

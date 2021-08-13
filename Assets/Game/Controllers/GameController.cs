@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     [Header("UI References:")]
     [SerializeField]
     private UIBoardGraphics _boardGraphics;
+    [SerializeField]
+    private UIGameOverModal _gameOverModal;
 
     private Player _currentPlayer;
 
@@ -38,7 +40,7 @@ public class GameController : MonoBehaviour
 
             if (winner != "" && winner != null)
             {
-                Debug.Log("Vencedor: " + winner);
+                _gameOverModal.OpenModal(winner);
             }
             else
             {
@@ -49,11 +51,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        StartGame("X", AIController.Difficulty.IMPOSSIBLE);
-    }
-
     public void StartGame(string humanMark, AIController.Difficulty difficulty)
     {
         _board.Restart();
@@ -61,8 +58,8 @@ public class GameController : MonoBehaviour
 
         _aiController._difficulty = difficulty;
 
-        _humanController.SetPlayerMark("X");
-        _aiController.SetPlayerMark("O");
+        _humanController.SetPlayerMark(humanMark);
+        _aiController.SetPlayerMark(humanMark == "X" ? "O" : "X");
 
         CurrentPlayer = humanMark == "X" ? Player.HUMAN : Player.AI;
     }
