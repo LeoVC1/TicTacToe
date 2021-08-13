@@ -36,6 +36,8 @@ public class UIBoardInput : MonoBehaviour
 
     private void SetupButton(Button button, int i, int j)
     {
+        button.onClick.RemoveAllListeners();
+
         button.onClick.AddListener(delegate
         {
             SetInputActive(false);

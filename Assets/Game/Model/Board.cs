@@ -84,4 +84,14 @@ public class Board : ScriptableObject
 
         return emptySpaces;
     }
+
+    public void Restart()
+    {
+        board = new string[3, 3]
+        {
+            { "", "", "" },
+            { "", "", "" },
+            { "", "", "" }
+        };
+    }
 }

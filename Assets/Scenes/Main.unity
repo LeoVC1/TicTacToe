@@ -601,9 +601,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 11400000, guid: fb1ad4703e240054083e437bfaaba8f6, type: 2}
-  humanController: {fileID: 611351732}
-  aiController: {fileID: 712130181}
-  boardGraphics: {fileID: 5589787809238150278}
+  _humanController: {fileID: 611351732}
+  _aiController: {fileID: 712130181}
+  _boardGraphics: {fileID: 5589787809238150278}
 --- !u!4 &793749779
 Transform:
   m_ObjectHideFlags: 0

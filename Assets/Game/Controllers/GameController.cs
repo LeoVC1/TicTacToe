@@ -9,13 +9,13 @@ public class GameController : MonoBehaviour
 
     [Header("Controllers References:")]
     [SerializeField]
-    private PlayerController humanController;
+    private HumanController _humanController;
     [SerializeField]
-    private PlayerController aiController;
+    private AIController _aiController;
 
     [Header("UI References:")]
     [SerializeField]
-    private UIBoardGraphics boardGraphics;
+    private UIBoardGraphics _boardGraphics;
 
     private Player _currentPlayer;
 
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
         }
         set
         {
-            boardGraphics.UpdateBoardGraphics(_board);
+            _boardGraphics.UpdateBoardGraphics(_board);
 
             _currentPlayer = value;
 
@@ -43,21 +43,27 @@ public class GameController : MonoBehaviour
             else
             {
                 //Notify all players about the change of current player
-                humanController.OnChangeCurrentPlayer(value);
-                aiController.OnChangeCurrentPlayer(value);
+                _humanController.OnChangeCurrentPlayer(value);
+                _aiController.OnChangeCurrentPlayer(value);
             }
         }
     }
 
-    private void Awake()
-    {
-        humanController.SetPlayerMark("X");
-        aiController.SetPlayerMark("O");
-    }
-
     private void Start()
     {
-        CurrentPlayer = Player.HUMAN;
+        StartGame("X", AIController.Difficulty.IMPOSSIBLE);
     }
 
+    public void StartGame(string humanMark, AIController.Difficulty difficulty)
+    {
+        _board.Restart();
+        _boardGraphics.ClearBoardGraphics();
+
+        _aiController._difficulty = difficulty;
+
+        _humanController.SetPlayerMark("X");
+        _aiController.SetPlayerMark("O");
+
+        CurrentPlayer = humanMark == "X" ? Player.HUMAN : Player.AI;
+    }
 }
