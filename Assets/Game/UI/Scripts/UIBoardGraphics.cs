@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIBoardGraphics : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI[] cellTexts;
+    private Sprite spriteMarkX;
+    [SerializeField]
+    private Sprite spriteMarkO;
+    [SerializeField]
+    private Image[] cellImages;
+
 
     private void Awake()
     {
-        cellTexts = GetComponentsInChildren<TextMeshProUGUI>();
+        cellImages = GetComponentsInChildren<Image>();
 
         ClearBoardGraphics();
     }
@@ -19,21 +25,22 @@ public class UIBoardGraphics : MonoBehaviour
     {
         ClearBoardGraphics();
 
-
         for (int i = 0, k = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++, k++)
             {
-                cellTexts[k].text += board.board[i, j];
+                cellImages[k].sprite = (board.board[i, j] == "X") ? spriteMarkX : (board.board[i, j] == "O") ? spriteMarkO : null;
+
+                cellImages[k].enabled = cellImages[k].sprite != null;
             }
         }
     }
 
     public void ClearBoardGraphics()
     {
-        foreach (TextMeshProUGUI text in cellTexts)
+        foreach (Image img in cellImages)
         {
-            text.text = "";
+            img.enabled = false;
         }
     }
 }

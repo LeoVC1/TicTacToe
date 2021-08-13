@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f40b30822e5ad0499e24feebc477e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellTexts: []
+  spriteMarkX: {fileID: 21300000, guid: 68854faca0d94c4479877c69eabffb9c, type: 3}
+  spriteMarkO: {fileID: 21300000, guid: fdfcd6e4f786bd04b98a9d0f9163271f, type: 3}
+  cellImages: []
 --- !u!1001 &1099752004387456424
 PrefabInstance:
   m_ObjectHideFlags: 0

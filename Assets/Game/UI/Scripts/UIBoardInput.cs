@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,10 +16,12 @@ public class UIBoardInput : MonoBehaviour
     [SerializeField]
     private CanvasGroup m_CanvasGroup;
     [SerializeField]
+    private TextMeshProUGUI txtPlayerMarkIndicator;
+    [SerializeField]
     private Button[] buttons;
 
     /// <summary>
-    /// Setup all buttons in the UI with the player mark
+    /// Setup all buttons in the UI
     /// </summary>
     /// <param name="playerMark"></param>
     public void SetupPlayerInputs()
@@ -56,6 +59,9 @@ public class UIBoardInput : MonoBehaviour
         }
 
         m_CanvasGroup.interactable = enable;
+        m_CanvasGroup.alpha = enable ? 1 : 0;
+
+        txtPlayerMarkIndicator.text = "Playing as: " + humanController.playerMark;
     }
 
     public void UpdateAvailableButtons()

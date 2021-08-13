@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    protected string playerMark;
+    [HideInInspector]
+    public string playerMark;
 
     public virtual void SetPlayerMark(string mark)
     {
